@@ -1,89 +1,125 @@
 import React, { useState, useEffect } from "react";
-import './TodoList.css';
-import Icone from './assets/icon.png'
+import "./TodoList.css";
+import Icone from "./assets/icon.png";
 
 function TodoList() {
-    // Verifica se há alguma lista armazenada no localStorage
-    const listaStorage = localStorage.getItem('Lista');
+  const listaStorage = localStorage.getItem("Lista");
 
-    // Inicializa o estado da lista de tarefas com os dados armazenados ou uma lista vazia
-    const [lista, setLista] = useState(listaStorage ? JSON.parse(listaStorage) : []);
-    // Inicializa o estado do novo item da lista como uma string vazia
-    const [novoItem, setNovoItem] = useState("");
+  const [lista, setLista] = useState(listaStorage ? JSON.parse(listaStorage) : []);
+  const [novoItem, setNovoItem] = useState("");
 
-    // Efeito colateral para atualizar o localStorage sempre que a lista mudar
-    useEffect(() => {
-        localStorage.setItem('Lista', JSON.stringify(lista));
-    }, [lista]);
+  const [editandoIndex, setEditandoIndex] = useState(-1); // Inicialmente nenhum índice está sendo editado
+  const [textoEditavel, setTextoEditavel] = useState('');
 
-    // Função para adicionar um novo item à lista
-    function adicionaItem(form) {
-        form.preventDefault();
-        // Verifica se o novo item não está vazio
-        if (!novoItem) {
-            return;
-        }
-        // Adiciona o novo item à lista
-        setLista([...lista, { text: novoItem, isCompleted: false }]);
-        // Limpa o campo do novo item
-        setNovoItem("");
-        // Define o foco de volta para o campo de entrada
-        document.getElementById('input-entrada').focus();
+  const [mostrarAlerta, setMostrarAlerta] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("Lista", JSON.stringify(lista));
+  }, [lista]);
+
+  function adicionaItem(form) {
+    form.preventDefault();
+    if (!novoItem.trim()) {
+      return;
     }
+    setLista([...lista, { text: novoItem.trim(), isCompleted: false }]);
+    setNovoItem("");
+    document.getElementById("input-entrada").focus();
+  }
 
-    // Função para marcar/desmarcar um item como concluído
-    function cliclou(index){
-        const listaAux = [...lista];
-        listaAux[index].isCompleted = !listaAux[index].isCompleted;
-        setLista(listaAux);
+  function cliclou(index) {
+    const listaAux = [...lista];
+    listaAux[index].isCompleted = !listaAux[index].isCompleted;
+    setLista(listaAux);
+  }
+
+  function deleta(index) {
+    const listaAux = [...lista];
+    listaAux.splice(index, 1);
+    setLista(listaAux);
+  }
+
+  function deletaTudo() {
+    const confirmacao = window.confirm("Tem certeza que deseja deletar todas as tarefas?");
+    if (confirmacao) {
+      setLista([]);
     }
-    
-    // Função para deletar um item da lista
-    function deleta(index){
-        const listaAux = [...lista];
-        listaAux.splice(index, 1);
-        setLista(listaAux);
-    }
+  }
 
-    // Função para deletar todos os itens da lista
-    function deletaTudo(){
-        setLista([]);
-    }
+  function iniciarEdicao(index, texto) {
+    setEditandoIndex(index);
+    setTextoEditavel(texto);
+}
 
-    return (
-        <div>
-            <h1> Lista de tarefas</h1>
-            <form onSubmit={adicionaItem}>
-                <input 
-                    id="input-entrada"
-                    type="text"
-                    value={novoItem} onChange={(e) => { setNovoItem(e.target.value) }}
-                    placeholder="Adicione uma tarefa" />
-                <button className="add" type="submit">Add</button>
-            </form>
+function finalizarEdicao(index) {
+    const listaAux = [...lista] ;
+    listaAux[index].text = textoEditavel.trim(); // Atualiza o texto da tarefa
+    setLista(listaAux);
+    setEditandoIndex(-1); // Sai do modo de edição
+    setTextoEditavel(''); // Limpa o texto editável
+}
 
-            <div className="listaTarefas">
-                <div style={{textAlign:'center'}}>
-                    {
-                        // Renderiza a lista de tarefas, mostrando cada item e botões para marcar como concluído e deletar
-                        lista.length < 1 ?
-                        <img className="icone-central" src={Icone} alt="Icone" /> :
-                        lista.map((item, index) => (
-                            <div key={index} className={item.isCompleted ? "item completo" : "item"}>
-                                <span onClick={() => cliclou(index)}>{item.text}</span>
-                                <button onClick={() => deleta(index)} className="del">Deletar</button>
-                            </div>
-                        ))
-                    }
-                    {
-                        // Renderiza o botão para deletar todas as tarefas caso haja pelo menos uma na lista
-                        lista.length > 0 &&
-                        <button onClick={() => deletaTudo()} className="deleteAll">Deletar todas</button>
-                    }
+function finalizarEdicao(index) {
+    const listaAux = [...lista];
+    listaAux[index].text = textoEditavel.trim();
+    setLista(listaAux);
+    setEditandoIndex(-1);
+    setTextoEditavel('');
+    setMostrarAlerta(true); // Mostra o alerta de confirmação
+}   
+
+  return (
+    <div>
+      <h1>Lista de tarefas</h1>
+      <form onSubmit={adicionaItem}>
+        <input
+          id="input-entrada"
+          type="text"
+          value={novoItem}
+          onChange={(e) => setNovoItem(e.target.value)}
+          placeholder="Adicione uma tarefa"
+          autoFocus // Foca automaticamente o campo de entrada quando a página é carregada
+        />
+        <button className="add" type="submit">
+          Add
+        </button>
+      </form>
+
+      <div className="listaTarefas">
+        <div style={{ textAlign: "center" }}>
+          {lista.length < 1 ? (
+            <img className="icone-central" src={Icone} alt="Icone" />
+          ) : (
+            lista.map((item, index) => (
+                <div key={index} className={item.isCompleted ? "item completo" : "item"}>
+                    {editandoIndex === index ? (
+                        <input
+                            type="text"
+                            value={textoEditavel}
+                            onChange={(e) => setTextoEditavel(e.target.value)}
+                            onBlur={() => finalizarEdicao(index)}
+                            autoFocus // Foca automaticamente o campo de entrada
+                        />
+                    ) : (
+                        <span onClick={() => iniciarEdicao(index, item.text)}>{item.text}</span>
+                    )}
+                    
+                    <button onClick={() => deleta(index)} className="del" aria-label="Deletar">
+                        Deletar
+                    </button>
                 </div>
-            </div>
+            ))
+          )}
+            
+            {lista.length > 0 && (
+            <button onClick={deletaTudo} className="deleteAll" aria-label="Deletar todas as tarefas">
+              Deletar todas
+            </button>
+          )}          
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default TodoList;

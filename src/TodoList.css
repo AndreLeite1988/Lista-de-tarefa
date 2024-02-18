@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); /* Importação da fonte Roboto do Google Fonts */
 
 body {
-    background: #222435; /* Cor de fundo do corpo */
+    background: #960101; /* Cor de fundo do corpo */
     font-family: 'Roboto', sans-serif; /* Fonte padrão para todo o documento */
 }
 
@@ -11,7 +11,7 @@ body {
 
 h1 {
     font-weight: 900; /* Peso da fonte */
-    color: #7b83b9; /* Cor do título */
+    color: #e2e4eb; /* Cor do título */
     text-align: center; /* Alinhamento do texto */
 }
 
@@ -40,7 +40,7 @@ button.add {
     position: absolute; /* Posição absoluta para sobrepor o botão ao campo de entrada */
     top: 0; /* Alinhamento superior */
     right: 0; /* Alinhamento à direita */
-    background: #363b65; /* Cor de fundo do botão */
+    background: #0aa123; /* Cor de fundo do botão */
     border: none; /* Sem borda */
     color: white; /* Cor do texto */
     cursor: pointer; /* Cursor do mouse */
@@ -51,7 +51,7 @@ button.add {
 }
 
 button.add:hover {
-    background: #363f88; /* Cor de fundo do botão ao passar o mouse */
+    background: #368848; /* Cor de fundo do botão ao passar o mouse */
 }
 
 .listaTarefas {
