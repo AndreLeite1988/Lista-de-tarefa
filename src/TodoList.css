@@ -31,7 +31,8 @@ input {
     border: none; /* Sem borda */
     padding-left: 30px; /* Preenchimento interno à esquerda */
     font-size: 16px; /* Tamanho da fonte */
-    border-radius: 10px; /* Raio da borda */
+    border-top-left-radius: 10px;/* Raio da borda superior esquerda */
+    border-bottom-left-radius: 10px; /* Raio da borda inferior esquerda */
     color: white; /* Cor do texto */
 }
 
@@ -124,6 +125,7 @@ button.deleteAll {
     font-weight: bold; /* Peso da fonte */
     border-radius: 5px; /* Raio da borda */
     cursor: pointer; /* Cursor do mouse */
+    margin-top: 30px;
 }
 
 /* Estilos para o botão "Deletar todas" quando o mouse passa por cima */

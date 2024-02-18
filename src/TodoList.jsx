@@ -71,7 +71,7 @@ function TodoList() {
                         lista.map((item, index) => (
                             <div key={index} className={item.isCompleted ? "item completo" : "item"}>
                                 <span onClick={() => cliclou(index)}>{item.text}</span>
-                                <button onClick={() => deleta(index)}>Deletar</button>
+                                <button onClick={() => deleta(index)} className="del">Deletar</button>
                             </div>
                         ))
                     }
