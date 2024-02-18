@@ -1,145 +1,148 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); /* Importação da fonte Roboto do Google Fonts */
 
 body {
-    background: #222435;
-    font-family: 'Roboto', sans-serif;
+    background: #222435; /* Cor de fundo do corpo */
+    font-family: 'Roboto', sans-serif; /* Fonte padrão para todo o documento */
 }
 
 *:focus {
-    outline: none;
+    outline: none; /* Remove a borda de foco em todos os elementos */
 }
 
 h1 {
-    font-weight: 900;
-    color: #7b83b9; 
-    text-align: center;
+    font-weight: 900; /* Peso da fonte */
+    color: #7b83b9; /* Cor do título */
+    text-align: center; /* Alinhamento do texto */
 }
 
 form {
-    display: flex;
-    position: relative;
-    width: 600px;
-    height: 60px;
-    margin: 30px auto;
-    margin-bottom: 60px;
+    display: flex; /* Exibição flexível para os elementos do formulário */
+    position: relative; /* Posição relativa para posicionamento de botão absoluto */
+    width: 600px; /* Largura do formulário */
+    height: 60px; /* Altura do formulário */
+    margin: 30px auto; /* Margem externa */
+    margin-bottom: 60px; /* Margem inferior */
 }
 
 input {
-    width: calc(100% - 105px); /* Ajuste para acomodar o botão */
-    height: 60px;
-    background: #230460;
-    border: none;
-    padding-left: 30px;
-    font-size: 16px;
-    border-radius: 10px;
-    color: white;
+    width: calc(100% - 105px); /* Largura do campo de entrada, subtraindo o espaço do botão */
+    height: 60px; /* Altura do campo de entrada */
+    background: #230460; /* Cor de fundo do campo de entrada */
+    border: none; /* Sem borda */
+    padding-left: 30px; /* Preenchimento interno à esquerda */
+    font-size: 16px; /* Tamanho da fonte */
+    border-radius: 10px; /* Raio da borda */
+    color: white; /* Cor do texto */
 }
 
 button.add {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: #363b65;
-    border: none;
-    color: white;
-    cursor: pointer;
-    padding: 10px 25px;
-    height: 62px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    position: absolute; /* Posição absoluta para sobrepor o botão ao campo de entrada */
+    top: 0; /* Alinhamento superior */
+    right: 0; /* Alinhamento à direita */
+    background: #363b65; /* Cor de fundo do botão */
+    border: none; /* Sem borda */
+    color: white; /* Cor do texto */
+    cursor: pointer; /* Cursor do mouse */
+    padding: 10px 25px; /* Preenchimento interno */
+    height: 62px; /* Altura do botão */
+    border-top-right-radius: 10px; /* Raio da borda superior direita */
+    border-bottom-right-radius: 10px; /* Raio da borda inferior direita */
 }
 
 button.add:hover {
-    background: #363f88;
+    background: #363f88; /* Cor de fundo do botão ao passar o mouse */
 }
 
 .listaTarefas {
-    display: flex;
-    justify-content: center;
-    flex-flow: column wrap;
-    width: 600px;
-    margin: auto;
+    display: flex; /* Exibição flexível para os elementos da lista de tarefas */
+    justify-content: center; /* Justificação do conteúdo ao centro */
+    flex-flow: column wrap; /* Fluxo de coluna com quebra de linha */
+    width: 600px; /* Largura da lista de tarefas */
+    margin: auto; /* Margem automática */
 }
 
 .item {
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid #363b65;
-    margin-bottom: 10px;
-    cursor: pointer;
+    display: flex; /* Exibição flexível para os itens */
+    justify-content: space-between; /* Espaçamento entre os itens */
+    border: 1px solid #363b65; /* Borda do item */
+    margin-bottom: 10px; /* Margem inferior */
+    cursor: pointer; /* Cursor do mouse */
 }
 
 .item:hover {
-    background: #151627;
+    background: #151627; /* Cor de fundo do item ao passar o mouse */
 }
 
 .item span {
-    text-align: start;
-    width: 100%;
-    color: white;
-    margin-right: 10px;
-    padding: 10px 15px;
+    text-align: start; /* Alinhamento do texto à esquerda */
+    width: 100%; /* Largura total */
+    color: white; /* Cor do texto */
+    margin-right: 10px; /* Margem direita */
+    padding: 10px 15px; /* Preenchimento interno */
 }
 
 .item.completo {
-    text-align: start;
-    display: flex;
-    justify-content: space-between;
-    background: #1e1f2e;
-    border: none;
-    margin-bottom: 10px;
-    cursor: pointer;
+    text-align: start; /* Alinhamento do texto à esquerda */
+    display: flex; /* Exibição flexível para os itens */
+    justify-content: space-between; /* Espaçamento entre os itens */
+    background: #1e1f2e; /* Cor de fundo do item */
+    border: none; /* Sem borda */
+    margin-bottom: 10px; /* Margem inferior */
+    cursor: pointer; /* Cursor do mouse */
 }
 
 .item.completo span {
-    width: 100%;
-    color: #4d506e;
-    margin-right: 10px;
-    padding: 10px 15px;
-    text-decoration: line-through;
-    opacity: 0.4;
+    width: 100%; /* Largura total */
+    color: #4d506e; /* Cor do texto */
+    margin-right: 10px; /* Margem direita */
+    padding: 10px 15px; /* Preenchimento interno */
+    text-decoration: line-through; /* Decoração de texto */
+    opacity: 0.4; /* Opacidade do texto */
 }
 
 button.del {
-    border: none;
-    background: none;
-    color: #4d506e;
-    padding: 15px;
-    cursor: pointer;
+    border: none; /* Sem borda */
+    background: none; /* Cor de fundo transparente */
+    color: #4d506e; /* Cor do texto */
+    padding: 15px; /* Preenchimento interno */
+    cursor: pointer; /* Cursor do mouse */
 }
 
 button.del:hover {
-    background: #ff004c;
-    border: none;
-    color: white;
-    padding: 15px;
-    cursor: pointer;
+    background: #ff004c; /* Cor de fundo do botão ao passar o mouse */
+    border: none; /* Sem borda */
+    color: white; /* Cor do texto */
+    padding: 15px; /* Preenchimento interno */
+    cursor: pointer; /* Cursor do mouse */
 }
 
 button.deleteAll {
-    border: 1px solid #ff004c;
-    background: none;
-    padding: 15px;
-    color: #ff004c;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
+    border: 1px solid #ff004c; /* Borda do botão */
+    background: none; /* Cor de fundo transparente */
+    padding: 15px; /* Preenchimento interno */
+    color: #ff004c; /* Cor do texto */
+    font-weight: bold; /* Peso da fonte */
+    border-radius: 5px; /* Raio da borda */
+    cursor: pointer; /* Cursor do mouse */
 }
 
-
+/* Estilos para o botão "Deletar todas" quando o mouse passa por cima */
 button.deleteAll:hover {
-    background: #ff004c;
-    color: white;
+    background: #ff004c; /* Altera o fundo para vermelho quando o mouse está sobre o botão */
+    color: white; /* Altera a cor do texto para branco quando o mouse está sobre o botão */
 }
 
-.icone-central{
-    max-width: 100%;
+/* Estilos para a classe .icone-central */
+.icone-central {
+    max-width: 100%; /* Define a largura máxima como 100% para garantir que a imagem centralizada não ultrapasse seu contêiner */
 }
+
+/* Estilos específicos para telas com largura máxima de 900px */
 @media screen and (max-width: 900px) {
     form {
-        width: 100%;
+        width: 100%; /* Define a largura do formulário como 100% para se ajustar à largura da tela */
     }
     .listaTarefas {
-        width: 100%;
+        width: 100%; /* Define a largura da lista de tarefas como 100% para se ajustar à largura da tela */
     }
 }
